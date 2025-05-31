@@ -6,4 +6,7 @@ node_modules
 .env.test
 .env.test.local
 .env.production.local
+.claude
+docs
+CLAUDE.md
 
