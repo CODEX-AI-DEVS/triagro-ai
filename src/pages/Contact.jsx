@@ -101,8 +101,8 @@ const Contact = () => {
                   <h3 className="flex flex-row font-semibold text-lg text-gray-700">
                     Email
                   </h3>
-                  <p className="text-gray-600">deepdiveteam@fsrp.org.gh</p>
-                  <p className="text-gray-600">info@fsrp.org.gh</p>
+                  <p className="text-gray-600">triagrioai@gmail.com</p>
+                  <p className="text-gray-600">info@triagrioai.com</p>
                 </div>
               </div>
             </div>
@@ -115,17 +115,6 @@ const Contact = () => {
             Find Us on the Map
           </h2>
           <div className="bg-gray-300 rounded-lg h-94">
-            {/* <LoadScript
-              googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-            >
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={14}
-              >
-                <Marker position={center} />
-              </GoogleMap>
-            </LoadScript> */}
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.4294557739663!2d-0.16714722413944483!3d5.650843632686896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9ca15e56390f%3A0xe32353079eab7d22!2sGHANA%20METEOROLOGICAL%20AGENCY!5e0!3m2!1sen!2sgh!4v1742294036187!5m2!1sen!2sgh"
               width="100%"

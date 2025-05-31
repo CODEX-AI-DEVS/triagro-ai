@@ -1,21 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-// import { useState } from "react";
+
 import DashboardPage from "./pages/DashboardPage";
 import Home from "./pages/Home";
 import Forecast from "./pages/Forecast";
-import Climate from "./pages/Climate";
+
 import About from "./pages/About";
 import CropCalendar from "./pages/CropCalendar";
 import Weather from "./pages/Weather";
 import NewsUpdates from "./pages/NewsUpdates";
 import SeasonalForecast from "./pages/SeasonalForecast";
-import FiveDaysForecast from "./pages/FiveDaysForecast";
+
 import SevenDaysForecast from "./pages/SevenDaysForecast";
 import AgroBulletins from "./pages/AgroBulletins";
 import FloodDrought from "./pages/FloodDrought";
 import SubseasonalForecast from "./pages/SubseasonalForecast";
-import MonthlyForecast from "./pages/MonthlyForecast";
-import ClimateReport from "./pages/Climate";
+
 import PoultryCalendar from "./pages/PoultryCalendar";
 import BlogGmetVisit from "./blog/BlogGmetVisit";
 import BlogNationalAssemblyVisit from "./blog/BlogNationalAssemblyVisit";
@@ -23,9 +22,7 @@ import BlogSonForecast from "./blog/BlogSonForecast";
 import PoultryAdvisory from "./pages/PoultryAdvisory";
 import CropAdvisory from "./pages/CropAdvisory";
 import NotFound from "./components/NotFound";
-import EventClimateReportRelease from "./events/EventClimateReportRelease";
-import EventMajorSeasonCropCalendar from "./events/EventMajorSeasonCropCalendar";
-import EventPoultryCalendar from "./events/EventPoultryCalendar.jsx";
+
 import OurServices from "./pages/OurServices";
 import Contact from "./pages/Contact";
 import Careers from "./pages/Careers";
@@ -252,18 +249,15 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "forecast", element: <Forecast /> },
-        { path: "climate", element: <Climate /> },
         { path: "about", element: <About /> },
         { path: "weather", element: <Weather /> },
         { path: "crop-calendar", element: <CropCalendar /> },
         { path: "news", element: <NewsUpdates /> },
-        { path: "5-days-forecast", element: <FiveDaysForecast /> },
         { path: "7-days-forecast", element: <SevenDaysForecast /> },
         { path: "agro-bulletins", element: <AgroBulletins /> },
         { path: "flood-drought", element: <FloodDrought /> },
         { path: "subseasonal-forecast", element: <SubseasonalForecast /> },
-        { path: "monthly-forecast", element: <MonthlyForecast /> },
-        { path: "climate-report", element: <ClimateReport /> },
+
         { path: "poultry-calendar", element: <PoultryCalendar /> },
         { path: "seasonal-forecast", element: <SeasonalForecast /> },
         { path: "blog/gmet-visit", element: <BlogGmetVisit /> },
@@ -272,15 +266,7 @@ function App() {
           element: <BlogNationalAssemblyVisit />,
         },
         { path: "blog/son-forecast", element: <BlogSonForecast /> },
-        {
-          path: "events/crop-calen",
-          element: <EventMajorSeasonCropCalendar />,
-        },
-        { path: "events/poult-calendar", element: <EventPoultryCalendar /> },
-        {
-          path: "events/clim-rep-rel",
-          element: <EventClimateReportRelease />,
-        },
+
         { path: "poultry-advisory", element: <PoultryAdvisory /> },
         { path: "crop-advisory", element: <CropAdvisory /> },
         { path: "services", element: <OurServices /> },

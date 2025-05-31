@@ -65,11 +65,11 @@ const About = () => {
             <div className="text-center">
               <FaGlobe className="h-12 w-12 text-green-500 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                Global Coverage
+                National Coverage
               </h3>
               <p className="text-gray-600">
-                Our app provides weather updates for thousands of cities across
-                more than 150 countries worldwide.
+                Our app provides weather updates for 261 of district across the
+                nation.
               </p>
             </div>
 
@@ -107,7 +107,7 @@ const About = () => {
             <div>
               <FaGlobe className="h-10 w-10 text-green-600 mx-auto mb-2" />
               <h3 className="text-2xl font-semibold text-blue-900">150+</h3>
-              <p className="text-gray-600">Countries Covered</p>
+              <p className="text-gray-600">Regions Covered</p>
             </div>
 
             {/* Metric 3 */}

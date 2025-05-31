@@ -195,7 +195,7 @@ const SeasonalForecast = () => {
                 <th className="p-2 bg-gray-200 border text-center">LTM</th>
 
                 <th className="p-2 bg-gray-200 border text-center">
-                  2024 Forecast
+                  2025 Forecast
                 </th>
               </tr>
             </thead>
@@ -245,7 +245,7 @@ const SeasonalForecast = () => {
               <tr className="border-b">
                 <th className="p-2 bg-gray-200">Season</th>
                 <th className="p-2 bg-gray-200">LTM</th>
-                <th className="p-2 bg-gray-200">2024 Forecast</th>
+                <th className="p-2 bg-gray-200">2025 Forecast</th>
               </tr>
             </thead>
             <tbody>
@@ -297,7 +297,7 @@ const SeasonalForecast = () => {
               <tr className="border-b">
                 <th className="p-2 bg-gray-200">TYPE</th>
                 <th className="p-2 bg-gray-200">LTM</th>
-                <th className="p-2 bg-gray-200">2024 Forecast</th>
+                <th className="p-2 bg-gray-200">2025 Forecast</th>
               </tr>
             </thead>
             <tbody>

@@ -1,4 +1,4 @@
-import logo from "../assets/images/ddt_log.png";
+import logo from "../assets/images/triagrio.png";
 import facebookIcon from "../assets/icons/facebook.png";
 import twitterIcon from "../assets/icons/x.png";
 import linkedinIcon from "../assets/icons/linkedin.png";
@@ -16,8 +16,8 @@ const Footer = () => {
           </a>
 
           <p className="text-sm text-gray-300 text-start md:text-left">
-            Deep Dive’s Climate Information App delivers real-time, reliable
-            agrometeorological advisories for planning and monitoring.
+            TriAgro-AI’s app delivers real-time, reliable agrometeorological
+            advisories for planning and monitoring.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ const Footer = () => {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              deepdiveteam@fsrp.org.gh
+              triagroai@gmail.com
             </a>
           </div>
 
@@ -133,7 +133,7 @@ const Footer = () => {
 
       <div className="mt-4 border-t border-gray-600 pt-2 text-xs text-gray-400 flex justify-center">
         <p>
-          &copy; {new Date().getFullYear()} DeepDiveTeam. All rights reserved.
+          &copy; {new Date().getFullYear()} TriAgro-AI. All rights reserved.
         </p>
       </div>
     </footer>
