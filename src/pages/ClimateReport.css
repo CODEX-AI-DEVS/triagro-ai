@@ -1,0 +1,76 @@
+ClimateReport.css
+
+/* Basic styling for the climate report container */
+.climate-report-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Styling for the map section */
+.map-section {
+  flex: 1; /* Take available space */
+  margin-bottom: 20px; /* Add space below the map */
+  position: relative; /* Ensure positioning for child elements */
+}
+
+/* Adjusting the controls section */
+.controls-section {
+  background-color: #f8f9fa; /* Light background for controls */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Styling for selection groups */
+.selection-group,
+.checkbox-group,
+.year-select-group {
+  margin-bottom: 15px; /* Space between groups */
+}
+
+/* Styling for labels */
+label {
+  font-weight: bold;
+}
+
+/* Styling for select elements and checkboxes */
+select {
+  width: 100%; /* Full width */
+  padding: 10px;
+  margin-top: 5px; /* Space between label and select */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Styling for buttons */
+.load-data-button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding for button */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.load-data-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .climate-report-container {
+    padding: 10px;
+  }
+
+  .controls-section {
+    padding: 15px;
+  }
+
+  .load-data-button {
+    width: 100%; /* Full width button */
+  }
+}
