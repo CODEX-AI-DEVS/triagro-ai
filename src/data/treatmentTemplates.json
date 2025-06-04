@@ -1,0 +1,156 @@
+{
+  "treatmentTemplates": {
+    "fungal_diseases": {
+      "early_blight": {
+        "en": "Apply copper-based fungicide every 7-10 days. Remove affected leaves and improve air circulation between plants. Avoid overhead watering and ensure proper drainage.",
+        "tw": "De kɔba nnuru a ɛko tia nnua nhwehwɛ nnanson biara. Yi nhaban a ɛhyɛ no na ma mframa nkɔ nnua no ntam yie. Nni nsuo gu wɔn so na hwɛ sɛ nsuo ntwa yie.",
+        "ee": "Tsɔ akɔbli aƒuiƒewuaƒe le kɔsiɖa 7-10 ɖe sia ɖe. Ɖe aŋgbawo siwo dze la da eye na ya ƒoƒo le nukuawo dome. Migana tsi ɖe wo dzi o eye kpɔ egbɔ be tsi dodo nanyo.",
+        "ga": "De kɔba gbomo kɔmi aduru kɔsiɖa 7-10 biara. Yi lɛ siwo ayaresa kɛ na yɛ fefe le nua no dome. Mɛkɛ nsu gu wɔn so na hwɛ sɛ nsu dodo yɛ yɛɛ.",
+        "dag": "Yi kɔba naŋmaariya kɔmi doyuli yuma karaa sari bee. Paai gbaŋa sibi naŋmaariya nyɛla ka ni yɛɛm kukuri ŋaahi gbuli bee ni yiŋguni. Da yi kɔm ka gu wala ka ni kpɔŋ sɛ kɔm dondoli."
+      },
+      "late_blight": {
+        "en": "Apply preventive fungicide before symptoms appear. Remove and destroy infected plants immediately. Improve air circulation and avoid wet conditions.",
+        "tw": "De nnuru a ɛko tia nnua nhwehwɛ ansa na yadeɛ nsɛnkyerɛnne nna adi. Yi nnua a yadeɛ ato wɔn mu no ntɛm na sɛe wɔn. Ma mframa nkɔ mu yie na nkwa ntɔm mu.",
+        "ee": "Tsɔ aƒuiƒewuaƒe hafi be dzesiwo naɖe wo ɖe go. Ɖe nukuwo siwo dze la da enumake eye nàgblẽ wo. Na ya ƒoƒo nanyo eye nàƒo tsi bɔbɔe.",
+        "ga": "De gbomo kɔmi aduru hafi ayaresa nsɛnkyerɛnne nba. Yi nua siwo ayaresa ato wɔn mu ntɛm na sɛe wɔn. Na yɛ fefe yɛ yɛɛ na nkwa nsuo mu.",
+        "dag": "Yi naŋmaariya kɔmi doyuli hali naŋmaariya tontonni ka sɔŋ. Paai gbuli sibi naŋmaariya nyɛla zaɣu zaɣu ka dihi wala. Yɛɛm kukuri ŋaahi ka ni da kpahi kɔm yinbu."
+      },
+      "powdery_mildew": {
+        "en": "Spray with baking soda solution or sulfur-based fungicide. Ensure good air circulation and reduce humidity around plants.",
+        "tw": "Pete baking soda nsuo anaa sulfur nnuru. Hwɛ sɛ mframa kɔ nnua no ho yie na tew nsuo a ɛwɔ wɔn ho no so.",
+        "ee": "Tsɔ baking soda tsi alo sulfur aƒuiƒewuaƒe hlẽ wo. Kpɔ egbɔ be ya ƒoƒo nanyo eye nàɖe tsidzodzoe siwo le nukuawo ŋu la dzi akpɔtɔ.",
+        "ga": "Pete baking soda nsu anaa sulfur gbomo kɔmi aduru. Hwɛ sɛ yɛ fefe kɔ nua no ho yɛɛ na tew nsu a ɛwɔ wɔn ho.",
+        "dag": "Piɛli baking soda kɔm bee sulfur naŋmaariya kɔmi doyuli. Kpɔŋ sɛ yɛɛm kukuri kɔ gbuli puuni ka ni tɛɣi kɔm yooi sibi gbuli puuni."
+      }
+    },
+    "bacterial_diseases": {
+      "bacterial_spot": {
+        "en": "Apply copper-based bactericide early in the morning. Remove infected plants and avoid working with wet plants. Practice crop rotation.",
+        "tw": "De kɔba nnuru a ɛko tia mmoawa anɔpa ntɛm. Yi nnua a mmoawa ato wɔn mu na nnwuma mfa nnua a nsuo ato wɔn so. Di nnua sesa akyi.",
+        "ee": "Tsɔ akɔbli aƒuiƒe wuaƒe le ŋdi kanya me. Ɖe nukuwo siwo dze la da eye mègawɔ dɔ kple nukuwo siwo tsi le wo ŋu o. Wɔ nukuwo ɖɔɖo.",
+        "ga": "De kɔba mɔkɔmɔ kɔmi aduru anɔpa ntɛm. Yi nua siwo mɔkɔmɔ ato wɔn mu na nnwuma mfa nua a nsu ato wɔn so. Di nua yɛmli akyi.",
+        "dag": "Yi kɔba saɣim kɔmi doyuli yɛɛbgu zaɣ'mali. Paai gbuli sibi saɣim nyɛla ka ni da maŋi gbuli sibi kɔm nyɛla yinbu. Di gbuli yɛmli."
+      },
+      "bacterial_wilt": {
+        "en": "Remove and destroy infected plants immediately. Disinfect tools between plants. Use disease-free seeds and practice good sanitation.",
+        "tw": "Yi nnua a yadeɛ ato wɔn mu no ntɛm na sɛe wɔn. Di adwumayɛ nnwinnade ho amammuo. De aba a yadeɛ nni mu na di ahinya pa so.",
+        "ee": "Ɖe nukuwo siwo dze la da enumake eye nàgblẽ wo. Klɔ dɔwɔnuwo ŋu le nukuwo dome. Zã ku siwo medze o eye nàlé ŋukeklẽ nyui me ɖe asi.",
+        "ga": "Yi nua siwo ayaresa ato wɔn mu ntɛm na sɛe wɔn. Di adwumayɛ nnoɔma ho fi. De aba a ayaresa nni mu na di ahinya pa so.",
+        "dag": "Paai gbuli sibi naŋmaariya nyɛla zaɣu zaɣu ka dihi wala. Siɣisi maŋmaŋ'ŋmani gbuli puuni yiŋguni. Yi aba sibi naŋmaariya ka nyɛ ka ni di siɣisim pia so."
+      }
+    },
+    "viral_diseases": {
+      "mosaic_virus": {
+        "en": "Remove infected plants to prevent spread. Control aphids and other insect vectors. Use virus-resistant varieties when available.",
+        "tw": "Yi nnua a yadeɛ ato wɔn mu no sɛnea ɛrentrɛw. Ko tia ntɔntɔn ne mmoa foforɔ a wɔde yadeɛ tra. De nnua a wɔtumi ko tia yadeɛ sɛ wowɔ hɔ a.",
+        "ee": "Ɖe nukuwo siwo dze la da be megakaka o. Tsi afii kple nudzodzoe bubuwo ŋu. Zã nukuwo siwo te ŋu tsia dɔléléaƒe ne woli.",
+        "ga": "Yi nua siwo ayaresa ato wɔn mu sɛnea ɛrentrɛw. Ko tia mmoawa ne mmoa foforɔ a wɔde ayaresa tra. De nua a wɔtumi ko tia ayaresa sɛ wowɔ hɔ.",
+        "dag": "Paai gbuli sibi naŋmaariya nyɛla sɛnea ka ŋmɛ ka pali. Kɔmi timbila bee yayili na bila sibi naŋmaariya bɔhi. Yi gbuli sibi dɔɣi naŋmaariya sɛ ba nyɛ."
+      },
+      "leaf_curl": {
+        "en": "Control whiteflies which spread the virus. Remove affected leaves promptly. Use reflective mulch to deter insects.",
+        "tw": "Ko tia ntɔntɔn fitaa a wɔde yadeɛ no tra. Yi nhaban a ɛhyɛ no ntɛm. De nneɛma a ɛhyerɛn a ɛmma mmoa no mpɛ sɛ wɔbɛn hɔ.",
+        "ee": "Tsi ƒuƒlu ɣiwo siwo kaka aƒuiƒe la ŋu. Ɖe aŋgbawo siwo dze la da enumake. Zã nukleaƒe siwo klẽna be nudzodzoewo nagbɔ megbe.",
+        "ga": "Ko tia mmoawa fitaa a wɔde ayaresa no tra. Yi lɛ siwo ayaresa kɛ ntɛm. De nneɛma a ɛhyerɛn a ɛmma mmoa no mpɛ sɛ wɔbɛn hɔ.",
+        "dag": "Kɔmi fuufu sibi saɣim bɔhi na ŋmɛ ni. Paai gbaŋa sibi naŋmaariya nyɛla zaɣu zaɣu. Yi yɛla sibi hyɛlimi be yayili na ŋmɛ ka gbo."
+      }
+    },
+    "nutritional_issues": {
+      "nitrogen_deficiency": {
+        "en": "Apply nitrogen-rich fertilizer or organic compost. Use urea or ammonium-based fertilizers for quick results.",
+        "tw": "De wura a nitrogen pii wɔ mu anaa abɔde mu nneɛma a wɔasɛe. De urea anaa ammonium wura sɛ wopɛ ntɛm nsa a.",
+        "ee": "Tsɔ anyigbakaka si me nitrogen le fũu alo dzɔdzɔmenunya siwo woƒo. Zã urea alo ammonium anyigbakaka ne èdi be nàkpɔ emetsonu kabakaba.",
+        "ga": "De wula a nitrogen pii wɔ mu anaa abɔde mu nneɛma a wɔasɛe. De urea anaa ammonium wula sɛ wopɛ ntɛm nsa.",
+        "dag": "Yi wula sibi nitrogen dihi lee bee yɛla sibi ka sɔŋ ka tooi. Yi urea bee ammonium wula sɛ a pɛ zaɣu zaɣu nsa."
+      },
+      "phosphorus_deficiency": {
+        "en": "Apply phosphorus-rich fertilizer, especially bone meal or rock phosphate. Ensure soil pH is between 6.0-7.0 for best uptake.",
+        "tw": "De wura a phosphorus pii wɔ mu, ne titire ne nnompe wura anaa abo phosphate. Hwɛ sɛ asase no yɛ pH 6.0-7.0 na amma ayɛ yie.",
+        "ee": "Tsɔ anyigbakaka si me phosphorus le fũu, vevietɔ ƒu wuwlui alo kpe phosphate. Kpɔ egbɔ be anyigba ƒe pH nanye 6.0-7.0 be wòanyo nyuie.",
+        "ga": "De wula a phosphorus pii wɔ mu, ne titire ne nnompe wula anaa abo phosphate. Hwɛ sɛ asase no yɛ pH 6.0-7.0 na amma ayɛ yɛɛ.",
+        "dag": "Yi wula sibi phosphorus dihi, voli pia ni ɣɔm wula bee kpɛŋ phosphate. Kpɔŋ sɛ tɔɣ' pH yɛ 6.0-7.0 sɛnaa a nyaŋa."
+      }
+    },
+    "general_care": {
+      "healthy_plant": {
+        "en": "Plant appears healthy. Continue regular monitoring and maintain good agricultural practices including proper watering, fertilization, and pest control.",
+        "tw": "Afifideɛ no ho yɛ den. Kɔ so hwɛ no daa na di kuadwuma pa so te sɛ nsuo a wode ma no, wura, ne mmoa a wɔko tia wɔn no.",
+        "ee": "Nukua la le dedie me. Yi edzi yim tsɔtsɔ ŋku ɖe eŋu eye nàlé agbledzidɔ nyui me ɖe asi abe tsi nana, anyigbakaka tsɔtsɔ, kple nudzodzoe ŋu tsitsimɔme ene.",
+        "ga": "Nua no ho yɛ dɛn. Kɔ so hwɛ no daa na di kuadwuma pa so te sɛ nsu a wode ma no, wula, kple mmoa a wɔko tia wɔn.",
+        "dag": "Gbuli ŋun siɣisim. Kɔ so ka ŋmɛ daa ka ni di kukalinlana pia so bi sɛ kɔm sibi ka nya, wula, kple yayili sibi ka kɔmi."
+      },
+      "prevention": {
+        "en": "To prevent diseases, practice crop rotation, maintain proper spacing, ensure good drainage, and monitor plants regularly for early detection.",
+        "tw": "Sɛ wopɛ sɛ wo si yadeɛ ho kwan a, sesa nnua, fa ntam kwan a ɛfata, hwɛ sɛ nsuo twa yie, na hwɛ nnua no daa sɛnea wubehu yadeɛ ntɛm.",
+        "ee": "Be yeaƒo dɔléléaƒewo la, wɔ nukuwo ɖɔɖo, lé didiƒe nyui me ɖe asi, kpɔ egbɔ be tsi dodo nanyo, eye nàtsɔ ŋku ɖe nukuawo ŋu enuenu be nàte ŋu anya wo kabakaba.",
+        "ga": "Sɛ wopɛ sɛ wo si ayaresa ho kwan a, yɛmli nua, fa ntam kwan a ɛfata, hwɛ sɛ nsu dodo yɛ yɛɛ, na hwɛ nua no daa sɛnea wubehu ayaresa ntɛm.",
+        "dag": "Be a pɛ ka si naŋmaariya yoŋ kwan, yɛmli gbuli, tɔŋ ntam-kwan sibi nyaŋa, kpɔŋ sɛ kɔm dondoli, ka ni ŋmɛ gbuli daa sɛnaa ka nya naŋmaariya zaɣu zaɣu."
+      }
+    }
+  },
+  "commonPhrases": {
+    "apply": {
+      "en": "apply",
+      "tw": "de",
+      "ee": "tsɔ",
+      "ga": "de",
+      "dag": "yi"
+    },
+    "remove": {
+      "en": "remove",
+      "tw": "yi",
+      "ee": "ɖe",
+      "ga": "yi", 
+      "dag": "paai"
+    },
+    "ensure": {
+      "en": "ensure",
+      "tw": "hwɛ sɛ",
+      "ee": "kpɔ egbɔ be",
+      "ga": "hwɛ sɛ",
+      "dag": "kpɔŋ sɛ"
+    },
+    "prevent": {
+      "en": "prevent",
+      "tw": "si...ho kwan",
+      "ee": "ƒo...o",
+      "ga": "si...ho kwan",
+      "dag": "si...yoŋ kwan"
+    },
+    "control": {
+      "en": "control",
+      "tw": "ko tia",
+      "ee": "tsi...ŋu",
+      "ga": "ko tia",
+      "dag": "kɔmi"
+    },
+    "improve": {
+      "en": "improve",
+      "tw": "ma...yɛ yie",
+      "ee": "na...nanyo",
+      "ga": "ma...yɛ yɛɛ",
+      "dag": "nyaŋa"
+    },
+    "avoid": {
+      "en": "avoid",
+      "tw": "nkwa",
+      "ee": "ƒo",
+      "ga": "nkwa",
+      "dag": "da"
+    },
+    "monitor": {
+      "en": "monitor",
+      "tw": "hwɛ",
+      "ee": "tsɔ ŋku ɖe...ŋu",
+      "ga": "hwɛ",
+      "dag": "ŋmɛ"
+    },
+    "regularly": {
+      "en": "regularly",
+      "tw": "daa",
+      "ee": "enuenu",
+      "ga": "daa",
+      "dag": "daa"
+    }
+  }
+}

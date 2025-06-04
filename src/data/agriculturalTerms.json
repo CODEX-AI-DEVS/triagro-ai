@@ -1,0 +1,422 @@
+{
+  "commonDiseases": {
+    "early_blight": {
+      "en": "Early Blight",
+      "tw": "Ntɛm Bonsra",
+      "ee": "Gbãtɔ Dɔléléaƒe",
+      "ga": "Gbomo Kome",
+      "dag": "Naŋmaariya Kpɛma"
+    },
+    "late_blight": {
+      "en": "Late Blight",
+      "tw": "Akyire Bonsra",
+      "ee": "Mlɔƒo Dɔléléaƒe",
+      "ga": "Gbomo Kɔŋ",
+      "dag": "Naŋmaariya Puuni"
+    },
+    "bacterial_spot": {
+      "en": "Bacterial Spot",
+      "tw": "Mmoawa Ntini",
+      "ee": "Aƒuiƒe Teƒe",
+      "ga": "Mɔkɔmɔ Ntini",
+      "dag": "Saɣim Boli"
+    },
+    "mosaic_virus": {
+      "en": "Mosaic Virus",
+      "tw": "Mosaic Mmoawa",
+      "ee": "Mosaic Aƒuiƒe",
+      "ga": "Mosaic Mɔkɔmɔ",
+      "dag": "Mosaic Saɣim"
+    },
+    "leaf_curl": {
+      "en": "Leaf Curl",
+      "tw": "Nhaban Kyekyere",
+      "ee": "Aŋgbawo Tɔtɔe",
+      "ga": "Lɛ Gbɛŋgbɛŋ",
+      "dag": "Gbaŋ Gbuli"
+    },
+    "powdery_mildew": {
+      "en": "Powdery Mildew",
+      "tw": "Mfutuma Bonsra",
+      "ee": "Ɖudu Dɔléléaƒe",
+      "ga": "Dudu Gbomo",
+      "dag": "Duuduu Naŋmaariya"
+    },
+    "black_spot": {
+      "en": "Black Spot",
+      "tw": "Tuntum Ntini",
+      "ee": "Yibɔ Teƒe",
+      "ga": "Dudu Ntini",
+      "dag": "Sibila Boli"
+    },
+    "anthracnose": {
+      "en": "Anthracnose",
+      "tw": "Anthracnose",
+      "ee": "Anthracnose",
+      "ga": "Anthracnose",
+      "dag": "Anthracnose"
+    },
+    "healthy": {
+      "en": "Healthy",
+      "tw": "Ahoɔden mu",
+      "ee": "Lãmesẽse",
+      "ga": "Sɛŋ",
+      "dag": "Siɣisim"
+    },
+    "no_disease_detected": {
+      "en": "No disease detected",
+      "tw": "Yadeɛ biara nni mu",
+      "ee": "Dɔléléaƒe aɖeke mele eme o",
+      "ga": "Ayaresa keke nii",
+      "dag": "Naŋmaariya kana ka ba"
+    }
+  },
+  "plants": {
+    "tomato": {
+      "en": "Tomato",
+      "tw": "Ntomato",
+      "ee": "Tomato",
+      "ga": "Tomato",
+      "dag": "Tomato"
+    },
+    "pepper": {
+      "en": "Pepper",
+      "tw": "Mako",
+      "ee": "Atadze",
+      "ga": "Atakɛ",
+      "dag": "Toosim"
+    },
+    "maize": {
+      "en": "Maize",
+      "tw": "Aburo",
+      "ee": "Bli",
+      "ga": "Abele",
+      "dag": "Saɣim"
+    },
+    "cassava": {
+      "en": "Cassava",
+      "tw": "Bankye",
+      "ee": "Agbeli",
+      "ga": "Bɔɔdee",
+      "dag": "Bahinyɛ"
+    },
+    "yam": {
+      "en": "Yam",
+      "tw": "Bayere",
+      "ee": "Te",
+      "ga": "Oko",
+      "dag": "Nyɛɛm"
+    },
+    "plantain": {
+      "en": "Plantain",
+      "tw": "Borɔdɛ",
+      "ee": "Akɔdu",
+      "ga": "Akɔjɛmɛ",
+      "dag": "Akɔntɛmrɛ"
+    },
+    "cocoa": {
+      "en": "Cocoa",
+      "tw": "Koko",
+      "ee": "Koko",
+      "ga": "Koko",
+      "dag": "Koko"
+    },
+    "rice": {
+      "en": "Rice",
+      "tw": "Emo",
+      "ee": "Bli",
+      "ga": "Emo",
+      "dag": "Mɔɔs"
+    },
+    "beans": {
+      "en": "Beans",
+      "tw": "Adua",
+      "ee": "Ayiyi",
+      "ga": "Adua",
+      "dag": "Tuya"
+    },
+    "onion": {
+      "en": "Onion",
+      "tw": "Gyeene",
+      "ee": "Alubɔsa",
+      "ga": "Alasa",
+      "dag": "Alubɔsa"
+    },
+    "sorghum": {
+      "en": "Sorghum",
+      "tw": "Aburukese",
+      "ee": "Kɔkɔmi",
+      "ga": "Aburukese",
+      "dag": "Dawa"
+    }
+  },
+  "treatments": {
+    "apply_fungicide": {
+      "en": "Apply fungicide",
+      "tw": "De nnuru a ɛko tia nnua nhwehwɛ",
+      "ee": "Tsɔ aƒuiƒewuaƒe",
+      "ga": "De gbomo kɔmi aduru",
+      "dag": "Yi naŋmaariya kɔmi doyuli"
+    },
+    "use_organic_pesticide": {
+      "en": "Use organic pesticide",
+      "tw": "De abɔdeɛ nnuru",
+      "ee": "Zã dzɔdzɔme wuaƒe",
+      "ga": "De abɔde komi aduru",
+      "dag": "Yi gbanzua doyuli"
+    },
+    "remove_affected_leaves": {
+      "en": "Remove affected leaves",
+      "tw": "Yi nhaban a ɛhyɛ no",
+      "ee": "Ɖe aŋgbawo siwo dze la da",
+      "ga": "Yi lɛ siwo ayaresa kɛ",
+      "dag": "Paai gbaŋa sibi naŋmaariya nyɛla"
+    },
+    "improve_drainage": {
+      "en": "Improve drainage",
+      "tw": "Ma nsuo ntwa yie",
+      "ee": "Na tsi dodo nanyo",
+      "ga": "Na nsu dodo nyɛ yɛɛ",
+      "dag": "Yɛɛrili kɔm dondoli nyaŋa"
+    },
+    "increase_air_circulation": {
+      "en": "Increase air circulation",
+      "tw": "Ma mframa nkɔ mu yie",
+      "ee": "Na ya ƒoƒo nyuie",
+      "ga": "Na yɛ fefe",
+      "dag": "Yɛɛm kukuri ŋaahi"
+    },
+    "apply_copper_spray": {
+      "en": "Apply copper spray",
+      "tw": "De kɔba petee",
+      "ee": "Tsɔ akɔbli aƒe",
+      "ga": "De kɔba fefe",
+      "dag": "Yi kɔba piɛli"
+    },
+    "use_resistant_varieties": {
+      "en": "Use resistant varieties",
+      "tw": "De nnua a wɔtumi ko tia yadeɛ",
+      "ee": "Zã nukuwo siwo te ŋu tsia dɔléléaƒe",
+      "ga": "De nua siwo komi ayaresa",
+      "dag": "Yi gbuli sibi dɔɣi naŋmaariya"
+    },
+    "proper_fertilization": {
+      "en": "Proper fertilization",
+      "tw": "De wura a ɛfata",
+      "ee": "Tsɔ anyigbakaka nyui",
+      "ga": "De wula yɛɛ",
+      "dag": "Yi wula ŋaahi"
+    },
+    "water_management": {
+      "en": "Water management",
+      "tw": "Nsuo nhwɛsoɔ",
+      "ee": "Tsi dodo",
+      "ga": "Nsu dodo",
+      "dag": "Kɔm dondoli"
+    },
+    "crop_rotation": {
+      "en": "Crop rotation",
+      "tw": "Nnua sesa",
+      "ee": "Nukuwo ɖɔɖo",
+      "ga": "Nua yɛmli",
+      "dag": "Gbuli yɛmli"
+    }
+  },
+  "symptoms": {
+    "yellow_spots": {
+      "en": "Yellow spots",
+      "tw": "Akokɔsradeɛ ntini",
+      "ee": "Teƒe dzĩwo",
+      "ga": "Duŋ ntini",
+      "dag": "Duŋ bɔhimbu"
+    },
+    "brown_spots": {
+      "en": "Brown spots",
+      "tw": "Bruu ntini",
+      "ee": "Teƒe damɛwo",
+      "ga": "Bɔɔ ntini",
+      "dag": "Bɔɔ bɔhimbu"
+    },
+    "wilting": {
+      "en": "Wilting",
+      "tw": "Amane",
+      "ee": "Aƒo",
+      "ga": "Mamɛ",
+      "dag": "Zaɣim"
+    },
+    "leaf_discoloration": {
+      "en": "Leaf discoloration",
+      "tw": "Nhaban ahosu sesaeɛ",
+      "ee": "Aŋgbawo amadede ɖɔɖo",
+      "ga": "Lɛ kolor sese",
+      "dag": "Gbaŋ kolor sɛsɛli"
+    },
+    "stunted_growth": {
+      "en": "Stunted growth",
+      "tw": "Nkɔsoɔ a ɛnyɛ yie",
+      "ee": "Mienɔnɔ gbegblẽ",
+      "ga": "Dodo gbegblɛ",
+      "dag": "Dondoli gbɛgbɛli"
+    }
+  },
+  "uiLabels": {
+    "plant_identified": {
+      "en": "Plant Identified",
+      "tw": "Nnua a Woahu",
+      "ee": "Nuku si Wonya",
+      "ga": "Nua si Wɔgbɛ",
+      "dag": "Gbuli Sibi Paɣili"
+    },
+    "disease_status": {
+      "en": "Disease Status",
+      "tw": "Yadeɛ Tebea",
+      "ee": "Dɔléléaƒe Nɔnɔme",
+      "ga": "Ayaresa Nɔnɔ",
+      "dag": "Naŋmaariya Yinbu"
+    },
+    "treatment_recommendations": {
+      "en": "Treatment Recommendations",
+      "tw": "Ayaresa ho Nyansapo",
+      "ee": "Ayaresaku Nyanyui",
+      "ga": "Ayaresa Kɔmi Nyɔŋmɔ",
+      "dag": "Naŋmaariya Kɔmi Malung"
+    },
+    "analysis_results": {
+      "en": "Analysis Results",
+      "tw": "Nhwehwɛmu Nsɛm",
+      "ee": "Dzodzro Emetsonuwo",
+      "ga": "Bɔɔbii Emetsonuwo",
+      "dag": "Paɣisim Ŋmɛrika"
+    },
+    "upload_image": {
+      "en": "Upload Image",
+      "tw": "De Mfoni Bra",
+      "ee": "Tsɔ Nɔnɔmetatawo Vɛ",
+      "ga": "Tsɔ Foto Vaa",
+      "dag": "Ka Foto Yalli"
+    },
+    "take_photo": {
+      "en": "Take Photo",
+      "tw": "Twe Mfoni",
+      "ee": "Ɖe Foto",
+      "ga": "De Foto",
+      "dag": "Gba Foto"
+    },
+    "diagnose": {
+      "en": "Diagnose",
+      "tw": "Hwehwɛ",
+      "ee": "Dzro Me",
+      "ga": "Bɔɔ",
+      "dag": "Paɣi"
+    },
+    "ready_for_analysis": {
+      "en": "Ready for Analysis",
+      "tw": "Ewie sɛ Wɔhwehwɛ",
+      "ee": "Ewɔ Dzodzrome Na",
+      "ga": "Ewɔ Bɔɔbii Na",
+      "dag": "Paɣisim Zaŋ Dali"
+    },
+    "alert_nearby_farmers": {
+      "en": "Alert Nearby Farmers",
+      "tw": "Bɔ Akuafoɔ a Wɔbɛn Amanneɛ",
+      "ee": "De Nya Na Agbledelawo",
+      "ga": "Bɔ Lɛmɛi Amanɛ",
+      "dag": "Zaɣim Kukalinma Amanɛɛ"
+    },
+    "community_alert": {
+      "en": "Community Alert",
+      "tw": "Mpɔtam Amanneɛ",
+      "ee": "Hame Nyagbɔgbɔ",
+      "ga": "Mantse Amanɛ",
+      "dag": "Yɔɣu Amanɛɛ"
+    },
+    "confidence": {
+      "en": "Confidence",
+      "tw": "Ahotoso",
+      "ee": "Kakaɖedzi",
+      "ga": "Kakade",
+      "dag": "Naaŋim"
+    },
+    "select_language": {
+      "en": "Select Language",
+      "tw": "Paw Kasa",
+      "ee": "Tia Gbe",
+      "ga": "Tia Gbe",
+      "dag": "Naai Yɛliŋ"
+    },
+    "loading": {
+      "en": "Loading...",
+      "tw": "Ɛrekɔ so...",
+      "ee": "Ele dzi yim...",
+      "ga": "Ɛkɛ yɛ...",
+      "dag": "Zaŋ dali..."
+    },
+    "error_occurred": {
+      "en": "An error occurred",
+      "tw": "Amfira bi aba",
+      "ee": "Vodada aɖe dzɔ",
+      "ga": "Amɛ aɖe baa",
+      "dag": "Puuni ayi ka ba"
+    },
+    "try_again": {
+      "en": "Try again",
+      "tw": "Sɔ hwɛ bio",
+      "ee": "Gawo dzi",
+      "ga": "Lɛɛ bio",
+      "dag": "Lɛɛ ka"
+    }
+  },
+  "severityLevels": {
+    "mild": {
+      "en": "Mild",
+      "tw": "Kakraba bi",
+      "ee": "Sue Aɖe",
+      "ga": "Kakra",
+      "dag": "Kakara"
+    },
+    "moderate": {
+      "en": "Moderate",
+      "tw": "Mfinimfini",
+      "ee": "Dometɔ",
+      "ga": "Mɛnsa",
+      "dag": "Laafi"
+    },
+    "severe": {
+      "en": "Severe",
+      "tw": "Amane",
+      "ee": "Sesẽ",
+      "ga": "Sɛŋsɛŋ",
+      "dag": "Tiŋa"
+    },
+    "critical": {
+      "en": "Critical",
+      "tw": "Ɛyɛ hu",
+      "ee": "Veveawo",
+      "ga": "Duŋduŋ",
+      "dag": "Gbɛŋgbɛŋ"
+    }
+  },
+  "timeframes": {
+    "immediate": {
+      "en": "Immediate",
+      "tw": "Ntɛm ara",
+      "ee": "Enumake",
+      "ga": "Ntɛm",
+      "dag": "Zaɣu zaɣu"
+    },
+    "within_week": {
+      "en": "Within a week",
+      "tw": "Dapɛn baako mu",
+      "ee": "Kɔsiɖa ɖeka me",
+      "ga": "Kɔsiɖa kɛkɛ me",
+      "dag": "Yuma kɛni ŋun ni"
+    },
+    "within_month": {
+      "en": "Within a month",
+      "tw": "Ɔsram baako mu",
+      "ee": "Ɣleti ɖeka me",
+      "ga": "Ɔsram kɛkɛ me",
+      "dag": "Pɔɣ' kɛni ŋun ni"
+    }
+  }
+}
