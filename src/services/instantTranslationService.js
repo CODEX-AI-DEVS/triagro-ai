@@ -47,9 +47,11 @@ class InstantTranslationService {
   compileDiseasePatterns(treatmentTemplates) {
     const patterns = [
       // Fungal diseases
+      { regex: /potato.?early.?blight/i, template: treatmentTemplates.fungal_diseases.potato_early_blight },
       { regex: /early.?blight/i, template: treatmentTemplates.fungal_diseases.early_blight },
       { regex: /late.?blight/i, template: treatmentTemplates.fungal_diseases.late_blight },
       { regex: /powdery.?mildew/i, template: treatmentTemplates.fungal_diseases.powdery_mildew },
+      { regex: /target.?spot|tomato.?target.?spot/i, template: treatmentTemplates.fungal_diseases.target_spot },
       
       // Bacterial diseases
       { regex: /bacterial.?spot/i, template: treatmentTemplates.bacterial_diseases.bacterial_spot },
