@@ -3,25 +3,24 @@ import { MessageCircle, X, Send, Mic, Volume2, ChevronDown, Loader2, Camera, Ima
 import { motion, AnimatePresence } from 'framer-motion';
 import translationService from '../services/translationService';
 import { ghanaianLanguages } from '../data/ghanaianLanguages';
+import { useTranslation } from '../hooks/useTranslation';
+import hybridTranslationService from '../services/hybridTranslationService';
 
 const AgriculturalChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      type: 'bot',
-      content: 'Hello! I\'m your agricultural assistant. How can I help you today?',
-      timestamp: new Date(),
-    }
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [isListening, setIsListening] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [apiStatus, setApiStatus] = useState('checking'); // 'online', 'offline', 'checking'
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
+  
+  // Translation hook
+  const { currentLanguage, changeLanguage, translateLabels } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage);
+  const [uiLabels, setUiLabels] = useState({});
 
   // Context about user's session
   const [userContext, setUserContext] = useState({
@@ -30,7 +29,71 @@ const AgriculturalChatbot = () => {
     preferredCrops: [],
     conversationHistory: []
   });
+  
+  // Default UI labels
+  const defaultLabels = {
+    greeting: "Hello! I'm your agricultural assistant. How can I help you today?",
+    title: "Agricultural Assistant",
+    status_online: "AI Powered",
+    status_offline: "Offline Mode",
+    status_connecting: "Connecting...",
+    placeholder: "Type your message...",
+    send: "Send",
+    voice_input: "Voice input",
+    upload_image: "Upload image",
+    weather_action: "Weather Forecast",
+    disease_action: "Disease Help",
+    market_action: "Market Prices",
+    farming_action: "Farming Tips",
+    weather_question: "What's the weather forecast for my area?",
+    disease_question: "I need help identifying a plant disease",
+    market_question: "Show me current market prices for crops",
+    farming_question: "Give me farming tips for this season",
+    image_uploaded: "I've uploaded an image for analysis",
+    voice_not_supported: "Voice input is not supported in your browser",
+    api_not_configured: "To analyze images, I need the Claude API to be configured. For now, please use our Disease Detection tool for plant disease identification.",
+    translation_error: "Translation error occurred. Showing original message.",
+    typing: "Typing..."
+  };
 
+  // Sync selected language with global language
+  useEffect(() => {
+    setSelectedLanguage(currentLanguage);
+  }, [currentLanguage]);
+  
+  // Load and translate UI labels when language changes
+  useEffect(() => {
+    const loadUILabels = async () => {
+      if (selectedLanguage === 'en') {
+        setUiLabels(defaultLabels);
+      } else {
+        try {
+          const translated = await translateLabels(defaultLabels, selectedLanguage);
+          setUiLabels(translated);
+        } catch (error) {
+          console.error('Failed to translate UI labels:', error);
+          setUiLabels(defaultLabels);
+        }
+      }
+    };
+    
+    loadUILabels();
+  }, [selectedLanguage, translateLabels]);
+  
+  // Initialize greeting message when UI labels are loaded
+  useEffect(() => {
+    if (uiLabels.greeting && messages.length === 0) {
+      setMessages([
+        {
+          id: 1,
+          type: 'bot',
+          content: uiLabels.greeting,
+          timestamp: new Date(),
+        }
+      ]);
+    }
+  }, [uiLabels.greeting]);
+  
   // Scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -73,12 +136,12 @@ const AgriculturalChatbot = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Quick action buttons
+  // Quick action buttons (dynamically updated with translations)
   const quickActions = [
-    { id: 'weather', label: 'Weather Forecast', icon: '🌤️' },
-    { id: 'disease', label: 'Disease Help', icon: '🌱' },
-    { id: 'market', label: 'Market Prices', icon: '💰' },
-    { id: 'farming', label: 'Farming Tips', icon: '🚜' }
+    { id: 'weather', label: uiLabels.weather_action || 'Weather Forecast', icon: '🌤️' },
+    { id: 'disease', label: uiLabels.disease_action || 'Disease Help', icon: '🌱' },
+    { id: 'market', label: uiLabels.market_action || 'Market Prices', icon: '💰' },
+    { id: 'farming', label: uiLabels.farming_action || 'Farming Tips', icon: '🚜' }
   ];
 
   // Predefined responses for offline mode
@@ -120,22 +183,28 @@ const AgriculturalChatbot = () => {
       if (attachments && attachments.type === 'image') {
         response = await handleImageAnalysis(content, attachments);
       } else {
-        // Regular text message
+        // Regular text message - translate to English for API if needed
         let translatedContent = content;
         if (selectedLanguage !== 'en') {
-          translatedContent = await translationService.translate(content, 'en', selectedLanguage);
+          try {
+            translatedContent = await hybridTranslationService.translateText(content, selectedLanguage, 'en');
+          } catch (error) {
+            console.error('Failed to translate user input:', error);
+            // Continue with original content
+          }
         }
         response = await callClaudeAPI(translatedContent, attachments);
       }
       
       // Translate response back to user's language if needed
       let finalResponse = response;
-      if (selectedLanguage !== 'en' && !response.includes('**')) {
+      if (selectedLanguage !== 'en') {
         try {
-          finalResponse = await translationService.translate(response, selectedLanguage, 'en');
+          finalResponse = await hybridTranslationService.translateText(response, 'en', selectedLanguage);
         } catch (translationError) {
           console.error('Translation error:', translationError);
-          // Keep original response if translation fails
+          // Show error message with original response
+          finalResponse = `${uiLabels.translation_error || 'Translation error occurred.'}\n\n${response}`;
         }
       }
 
@@ -158,7 +227,17 @@ const AgriculturalChatbot = () => {
       console.error('Chatbot error:', error);
       
       // Use intelligent fallback
-      const fallbackResponse = getIntelligentFallback(content);
+      let fallbackResponse = getIntelligentFallback(content);
+      
+      // Translate fallback response if needed
+      if (selectedLanguage !== 'en') {
+        try {
+          fallbackResponse = await hybridTranslationService.translateText(fallbackResponse, 'en', selectedLanguage);
+        } catch (error) {
+          console.error('Failed to translate fallback response:', error);
+        }
+      }
+      
       const fallbackMessage = {
         id: Date.now() + 1,
         type: 'bot',
@@ -177,7 +256,7 @@ const AgriculturalChatbot = () => {
     const apiKey = import.meta.env.VITE_CLAUDE_API_KEY;
     
     if (!apiKey || apiKey === 'your_claude_api_key_here') {
-      return "To analyze images, I need the Claude API to be configured. For now, please use our Disease Detection tool for plant disease identification.";
+      return uiLabels.api_not_configured || "To analyze images, I need the Claude API to be configured. For now, please use our Disease Detection tool for plant disease identification.";
     }
 
     try {
@@ -455,7 +534,7 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
   // Voice input handling
   const handleVoiceInput = () => {
     if (!('webkitSpeechRecognition' in window)) {
-      alert('Voice input is not supported in your browser');
+      alert(uiLabels.voice_not_supported || 'Voice input is not supported in your browser');
       return;
     }
 
@@ -481,7 +560,7 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        handleSendMessage('I\'ve uploaded an image for analysis', 'image', {
+        handleSendMessage(uiLabels.image_uploaded || 'I\'ve uploaded an image for analysis', 'image', {
           type: 'image',
           data: e.target.result,
           name: file.name
@@ -494,10 +573,10 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
   // Quick action handler
   const handleQuickAction = (actionId) => {
     const actionMessages = {
-      weather: "What's the weather forecast for my area?",
-      disease: "I need help identifying a plant disease",
-      market: "Show me current market prices for crops",
-      farming: "Give me farming tips for this season"
+      weather: uiLabels.weather_question || "What's the weather forecast for my area?",
+      disease: uiLabels.disease_question || "I need help identifying a plant disease",
+      market: uiLabels.market_question || "Show me current market prices for crops",
+      farming: uiLabels.farming_question || "Give me farming tips for this season"
     };
     
     setInputValue(actionMessages[actionId]);
@@ -530,9 +609,11 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition-all"
+            className="fixed bottom-4 right-4 z-50 bg-gradient-to-r from-green-600 to-green-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-800 transition-all duration-300 border-2 border-white"
           >
-            <MessageCircle size={24} />
+            <MessageCircle size={20} className="sm:w-6 sm:h-6" />
+            {/* Notification badge for when there are new features */}
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
           </motion.button>
         )}
       </AnimatePresence>
@@ -541,52 +622,56 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed inset-x-4 bottom-4 xs:right-4 xs:left-auto xs:w-80 sm:w-96 h-[500px] sm:h-[600px] max-h-[90vh] z-50 bg-white rounded-xl shadow-2xl flex flex-col border-2 border-green-100"
           >
             {/* Header */}
-            <div className="bg-green-600 text-white p-4 rounded-t-lg flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-xl">🌾</span>
+            <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-3 sm:p-4 rounded-t-xl flex items-center justify-between">
+              <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-lg sm:text-xl">🌾</span>
                 </div>
-                <div>
-                  <h3 className="font-semibold">Agricultural Assistant</h3>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-sm sm:text-base truncate">{uiLabels.title || 'Agricultural Assistant'}</h3>
                   <p className="text-xs opacity-80 flex items-center gap-1">
-                    <span className={`inline-block w-2 h-2 rounded-full ${
+                    <span className={`inline-block w-2 h-2 rounded-full flex-shrink-0 ${
                       apiStatus === 'online' ? 'bg-green-400' : 
                       apiStatus === 'offline' ? 'bg-red-400' : 
                       'bg-yellow-400 animate-pulse'
                     }`} />
-                    {apiStatus === 'online' ? 'AI Powered' : 
-                     apiStatus === 'offline' ? 'Offline Mode' : 
-                     'Connecting...'}
+                    <span className="truncate">
+                      {apiStatus === 'online' ? (uiLabels.status_online || 'AI Powered') : 
+                       apiStatus === 'offline' ? (uiLabels.status_offline || 'Offline Mode') : 
+                       (uiLabels.status_connecting || 'Connecting...')}
+                    </span>
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
                 {/* Language selector */}
                 <div className="relative">
                   <button
                     onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                    className="p-2 hover:bg-white/10 rounded transition-colors"
+                    className="p-1.5 sm:p-2 hover:bg-white/10 rounded transition-colors"
                   >
-                    <ChevronDown size={20} />
+                    <ChevronDown size={18} />
                   </button>
                   {showLanguageDropdown && (
-                    <div className="absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-lg py-2 w-48 max-h-60 overflow-y-auto">
+                    <div className="absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-lg py-2 w-44 sm:w-48 max-h-48 sm:max-h-60 overflow-y-auto z-10">
                       {Object.entries(ghanaianLanguages.languages).map(([code, lang]) => (
                         <button
                           key={code}
                           onClick={() => {
                             setSelectedLanguage(code);
+                            changeLanguage(code); // Update global language
                             setShowLanguageDropdown(false);
                           }}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                          className="w-full text-left px-3 sm:px-4 py-2 hover:bg-gray-100 transition-colors text-sm"
                         >
-                          {lang.name} ({lang.nativeName})
+                          <span className="block truncate">{lang.name}</span>
+                          <span className="text-xs text-gray-500 truncate">({lang.nativeName})</span>
                         </button>
                       ))}
                     </div>
@@ -594,45 +679,48 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 hover:bg-white/10 rounded transition-colors"
+                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded transition-colors"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
             </div>
 
             {/* Messages area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 bg-gray-50">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg ${
+                    className={`max-w-[85%] sm:max-w-[80%] p-2.5 sm:p-3 rounded-lg shadow-sm ${
                       message.type === 'user'
-                        ? 'bg-green-600 text-white'
-                        : 'bg-gray-100 text-gray-800'
+                        ? 'bg-green-600 text-white rounded-br-sm'
+                        : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm'
                     }`}
                   >
                     {message.attachments && message.attachments.type === 'image' && (
                       <img 
                         src={message.attachments.data} 
                         alt="Uploaded" 
-                        className="w-full rounded mb-2"
+                        className="w-full rounded mb-2 max-h-32 object-cover"
                       />
                     )}
-                    <p className="text-sm">{message.content}</p>
-                    <p className="text-xs opacity-60 mt-1">
-                      {message.timestamp.toLocaleTimeString()}
+                    <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                    <p className="text-xs opacity-60 mt-1.5 text-right">
+                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                 </div>
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 p-3 rounded-lg">
-                    <Loader2 className="w-5 h-5 animate-spin text-gray-600" />
+                  <div className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                    <div className="flex items-center space-x-2">
+                      <Loader2 className="w-4 h-4 animate-spin text-green-600" />
+                      <span className="text-sm text-gray-600">{uiLabels.typing || 'Typing...'}</span>
+                    </div>
                   </div>
                 </div>
               )}
@@ -640,24 +728,25 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
             </div>
 
             {/* Quick actions */}
-            <div className="px-4 py-2 border-t">
-              <div className="flex space-x-2 overflow-x-auto">
+            <div className="px-3 sm:px-4 py-2 border-t bg-white">
+              <div className="flex space-x-1.5 sm:space-x-2 overflow-x-auto scrollbar-hide">
                 {quickActions.map((action) => (
                   <button
                     key={action.id}
                     onClick={() => handleQuickAction(action.id)}
-                    className="flex items-center space-x-1 px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-gray-200 transition-colors whitespace-nowrap"
+                    className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-xs sm:text-sm hover:bg-green-100 transition-colors whitespace-nowrap flex-shrink-0"
                   >
-                    <span>{action.icon}</span>
-                    <span>{action.label}</span>
+                    <span className="text-sm">{action.icon}</span>
+                    <span className="hidden sm:inline">{action.label}</span>
+                    <span className="sm:hidden text-xs">{action.label.split(' ')[0]}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Input area */}
-            <div className="p-4 border-t">
-              <div className="flex items-center space-x-2">
+            <div className="p-3 sm:p-4 border-t bg-white rounded-b-xl">
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
                 <input
                   type="file"
                   ref={fileInputRef}
@@ -667,34 +756,37 @@ Keep responses concise but informative. Always be encouraging and supportive.`;
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
+                  title={uiLabels.upload_image || 'Upload image'}
                 >
-                  <Camera size={20} />
+                  <Camera size={18} />
                 </button>
                 <button
                   onClick={handleVoiceInput}
-                  className={`p-2 rounded-lg transition-colors ${
+                  className={`p-2 rounded-lg transition-colors flex-shrink-0 ${
                     isListening 
                       ? 'bg-red-100 text-red-600' 
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
+                  title={uiLabels.voice_input || 'Voice input'}
                 >
-                  <Mic size={20} />
+                  <Mic size={18} />
                 </button>
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
+                  placeholder={uiLabels.placeholder || "Type your message..."}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                 />
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputValue.trim() || isLoading}
-                  className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+                  title={uiLabels.send || 'Send'}
                 >
-                  <Send size={20} />
+                  <Send size={18} />
                 </button>
               </div>
             </div>

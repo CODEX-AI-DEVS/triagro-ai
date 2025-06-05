@@ -38,6 +38,9 @@ const PlantDiseaseDetector = () => {
   const [dragOver, setDragOver] = useState(false);
   const [cameraStream, setCameraStream] = useState(null);
   const [uiLabels, setUiLabels] = useState({});
+  const [isTranslatingResult, setIsTranslatingResult] = useState(false);
+  const [translationProgress, setTranslationProgress] = useState(0);
+  const [translationMessage, setTranslationMessage] = useState("");
   const fileInputRef = useRef(null);
   const cameraInputRef = useRef(null);
   const videoRef = useRef(null);
@@ -147,7 +150,28 @@ const PlantDiseaseDetector = () => {
           });
         }
         
+        // Start translation loading animation
+        setIsTranslatingResult(true);
+        setTranslationProgress(0);
+        setTranslationMessage("Initializing translation service...");
+        
         try {
+          // Simulate progressive loading with multiple stages
+          const loadingStages = [
+            { progress: 15, message: "Connecting to Ghana NLP service...", delay: 800 },
+            { progress: 35, message: "Analyzing agricultural terminology...", delay: 1200 },
+            { progress: 55, message: "Processing treatment recommendations...", delay: 1000 },
+            { progress: 75, message: "Optimizing for local dialect...", delay: 1000 },
+            { progress: 90, message: "Finalizing translation...", delay: 500 }
+          ];
+          
+          // Progress through loading stages
+          for (const stage of loadingStages) {
+            await new Promise(resolve => setTimeout(resolve, stage.delay));
+            setTranslationProgress(stage.progress);
+            setTranslationMessage(stage.message);
+          }
+          
           console.time('Hybrid Translation Speed');
           console.log(`🔄 Translating diagnosis result to ${currentLanguage}:`, result);
           
@@ -156,7 +180,13 @@ const PlantDiseaseDetector = () => {
           console.timeEnd('Hybrid Translation Speed');
           console.log(`✅ Translation completed:`, translated);
           
+          // Final stage
+          setTranslationProgress(100);
+          setTranslationMessage("Translation complete!");
+          await new Promise(resolve => setTimeout(resolve, 300));
+          
           setTranslatedResult(translated);
+          setIsTranslatingResult(false);
           
           if (window.translationTracker) {
             window.translationTracker.trackComponentUpdate('CropDiagnosticTool', 'diagnosis_translation_success', {
@@ -169,11 +199,17 @@ const PlantDiseaseDetector = () => {
         } catch (error) {
           console.error('Failed to translate result:', error);
           
+          // Show error state briefly
+          setTranslationMessage("Primary service unavailable, trying backup...");
+          setTranslationProgress(95);
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
           // Fallback to original translation service
           try {
             console.log('🔄 Trying fallback translation service...');
             const fallback = await translateDiagnosisResult(result);
             setTranslatedResult(fallback);
+            setIsTranslatingResult(false);
             
             if (window.translationTracker) {
               window.translationTracker.trackComponentUpdate('CropDiagnosticTool', 'diagnosis_translation_fallback_success', {
@@ -186,6 +222,7 @@ const PlantDiseaseDetector = () => {
           } catch (fallbackError) {
             console.error('Fallback translation also failed:', fallbackError);
             setTranslatedResult(result);
+            setIsTranslatingResult(false);
             
             if (window.translationTracker) {
               window.translationTracker.trackComponentUpdate('CropDiagnosticTool', 'diagnosis_translation_failure', {
@@ -199,6 +236,7 @@ const PlantDiseaseDetector = () => {
         }
       } else {
         setTranslatedResult(null);
+        setIsTranslatingResult(false);
         
         if (window.translationTracker) {
           window.translationTracker.trackComponentUpdate('CropDiagnosticTool', 'diagnosis_result_cleared', {
@@ -810,7 +848,7 @@ const PlantDiseaseDetector = () => {
                   Upload a plant image to get instant AI-powered disease
                   detection and treatment recommendations
                 </p>
-                {isTranslating && (
+                {isTranslatingResult && (
                   <div className="mt-4 flex items-center justify-center text-blue-600">
                     <Loader className="w-4 h-4 mr-2 animate-spin" />
                     <span className="text-sm">{uiLabels.loading || "Translating..."}</span>
@@ -818,18 +856,68 @@ const PlantDiseaseDetector = () => {
                 )}
               </div>
             ) : (
-              <div className="space-y-8">
-                {isTranslating && (
-                  <div className="flex items-center justify-center p-4 bg-blue-50 rounded-xl border border-blue-200">
-                    <Loader className="w-4 h-4 mr-2 animate-spin text-blue-600" />
-                    <span className="text-sm text-blue-700">{uiLabels.loading || "Translating results..."}</span>
-                  </div>
-                )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-8 relative">
+                {isTranslatingResult && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200 shadow-lg"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="absolute inset-0 z-20 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-2xl"
+                  >
+                    <div className="relative bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200 shadow-xl overflow-hidden max-w-md w-full mx-4">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 animate-pulse" />
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-center mb-4">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping" />
+                          <Loader className="w-8 h-8 text-blue-600 animate-spin relative z-10" />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-center font-semibold text-blue-800 mb-2">
+                        {translationMessage}
+                      </h3>
+                      
+                      <div className="w-full bg-blue-100 rounded-full h-3 overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-blue-400 to-indigo-500"
+                          initial={{ width: "0%" }}
+                          animate={{ width: `${translationProgress}%` }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      </div>
+                      
+                      <p className="text-center text-sm text-blue-600 mt-2">
+                        {translationProgress}% complete
+                      </p>
+                      
+                      {translationProgress > 50 && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="mt-4 text-center"
+                        >
+                          <p className="text-xs text-blue-600">
+                            Ensuring accurate agricultural terminology...
+                          </p>
+                        </motion.div>
+                      )}
+                    </div>
+                    </div>
+                  </motion.div>
+                )}
+                <motion.div 
+                  className="space-y-6"
+                  initial={{ opacity: isTranslatingResult ? 0 : 1 }}
+                  animate={{ opacity: isTranslatingResult ? 0.3 : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200 shadow-lg"
                   >
                     <div className="flex items-center mb-4">
                       <div className="bg-green-500 p-2 rounded-lg mr-3">
@@ -905,6 +993,7 @@ const PlantDiseaseDetector = () => {
                     {uiLabels.community_alert || "Community Alert"}
                   </div>
                 </motion.button>
+                </motion.div>
               </div>
             )}
           </motion.div>
